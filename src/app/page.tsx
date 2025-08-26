@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="font-sans text-5xl bg-white items-center justify-items-center min-h-screen">
+    <div className="bg-white items-center justify-items-center min-h-screen">
       <main className="max-w-[400px] w-[calc(100vw-18px)] mx-auto flex flex-col gap-y-3">
         <IntroBanner />
 
