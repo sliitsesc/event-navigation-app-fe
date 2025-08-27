@@ -89,7 +89,7 @@ const SingleZonePage = () => {
       ) : zone && zone.stalls && zone.stalls.length > 0 ? (
         <div className="grid grid-cols-1 gap-y-3">
           {zone.stalls.map((stall: Stall) => (
-            <StallCard key={stall.id} stall={stall} />
+            <StallCard key={stall.id} stall={stall} zoneId={zone.id} />
           ))}
         </div>
       ) : (

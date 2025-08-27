@@ -6,6 +6,8 @@ export interface Stall {
   imageUrl?: string;
   organizer?: string;
   category?: string;
+  floorNumber?: number;
+  location?: string;
 }
 
 // Zone type

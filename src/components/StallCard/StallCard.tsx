@@ -3,17 +3,28 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Stall } from "@/types/zones";
 import { truncateText } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const placeholderImg = "/images/placeholder.png";
 const STALL_NAME_CHAR_LIMIT = 38;
 
-const StallCard = ({ stall }: { stall: Stall }) => {
+interface StallCardProps {
+  stall: Stall;
+  zoneId: string;
+}
+
+const StallCard = ({ stall, zoneId }: StallCardProps) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/zones/${zoneId}/${stall.id}`);
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="rounded-2xl w-full bg-gradient-to-br from-blue-50 to-blue-100 overflow-hidden flex flex-row relative p-3">
+      className="rounded-2xl w-full bg-gradient-to-br from-blue-50 to-blue-100 overflow-hidden flex flex-row relative p-3 cursor-pointer"
+      onClick={handleClick}>
       <Image
         src={stall.imageUrl || placeholderImg}
         alt={stall.name}
