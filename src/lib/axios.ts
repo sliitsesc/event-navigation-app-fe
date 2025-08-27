@@ -2,8 +2,7 @@ import axios from "axios";
 
 // Create an Axios instance
 const api = axios.create({
-  baseURL:
-    process.env.NEXT_PUBLIC_API_BASE_URL || "http://34.121.251.7:9090/v1",
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: 10000,
 });
 

@@ -10,13 +10,13 @@ export default function Home() {
 
         <div className="w-full bg-gradient-to-br from-yellow-50 to-80% to-yellow-200 rounded-3xl p-6 flex flex-col justify-between">
           <div>
-            <h2 className="text-2xl font-bold mb-2">Quick Scan</h2>
-            <p className="text-xl text-gray-600 mb-2">
+            <h2 className="text-2xl font-bold mb-2 font-sans">Quick Scan</h2>
+            <p className="text-xl font-sans text-gray-600 mb-2">
               Scan QR codes to learn more about exhibits
             </p>
           </div>
           <Link
-            className="flex flex-row justify-center items-center bg-yellow-400 rounded-full text-2xl font-medium p-4 w-full"
+            className="flex flex-row font-sans justify-center items-center bg-yellow-400 rounded-full text-2xl font-medium p-4 w-full"
             href="/scan">
             <QrCode size={32} className="mr-3" />
             Scan QR Code
@@ -25,13 +25,15 @@ export default function Home() {
 
         <div className="w-full bg-gradient-to-br from-green-50 to-80% to-green-200 rounded-3xl p-6 flex flex-col justify-between">
           <div>
-            <h2 className="text-2xl font-bold mb-2">Explore Stalls</h2>
-            <p className="text-xl text-gray-600 mb-2">
+            <h2 className="text-2xl font-bold mb-2 font-sans">
+              Explore Stalls
+            </h2>
+            <p className="text-xl text-gray-600 mb-2 font-sans">
               Explore stalls and exhibits at the exhibition
             </p>
           </div>
           <Link
-            className="flex flex-row justify-center items-center bg-green-400 rounded-full text-2xl font-medium p-4 w-full"
+            className="flex flex-row font-sans justify-center items-center bg-green-400 rounded-full text-2xl font-medium p-4 w-full"
             href="/zones">
             <Map size={32} className="mr-3" />
             Explore Stalls
