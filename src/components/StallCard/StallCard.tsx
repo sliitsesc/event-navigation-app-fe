@@ -14,6 +14,7 @@ interface StallCardProps {
 }
 
 const StallCard = ({ stall, zoneId }: StallCardProps) => {
+  console.log("image", stall?.image);
   const router = useRouter();
   const handleClick = () => {
     router.push(`/zones/${zoneId}/${stall.id}`);
@@ -26,7 +27,7 @@ const StallCard = ({ stall, zoneId }: StallCardProps) => {
       className="rounded-2xl w-full bg-gradient-to-br from-blue-50 to-blue-100 overflow-hidden flex flex-row relative p-3 cursor-pointer"
       onClick={handleClick}>
       <Image
-        src={stall.imageUrl || placeholderImg}
+        src={stall.image || placeholderImg}
         alt={stall.name}
         width={100}
         height={100}
@@ -39,8 +40,13 @@ const StallCard = ({ stall, zoneId }: StallCardProps) => {
         {/* <p className="text-md text-gray-600 mb-1 leading-tight">
           {stall.organizer}
         </p> */}
-        <div className="text-md font-semibold text-cyan-900 -ml-0.5 mt-1 mb-1 leading-tight py-1 px-3 bg-blue-200 w-min rounded-full">
-          {stall.category}
+        <div className="inline-flex">
+          <div className="text-md mr-2 font-semibold text-cyan-900 -ml-0.5 mt-1 mb-1 leading-tight py-1 px-3 bg-blue-200 w-min rounded-full">
+            {stall.category}
+          </div>
+          <div className="text-md font-semibold text-blue-500 -ml-0.5 mt-1 mb-1 leading-tight py-1 px-3 bg-white w-max rounded-full">
+            {stall.location}
+          </div>
         </div>
       </div>
     </motion.div>

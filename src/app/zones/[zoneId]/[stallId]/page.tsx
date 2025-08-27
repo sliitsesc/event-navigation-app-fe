@@ -39,7 +39,7 @@ const StallDetailPage = () => {
     <div>
       <div className="rounded-2xl w-full bg-gradient-to-br from-blue-50 to-blue-100 overflow-hidden flex flex-col relative p-6 min-h-[220px] mb-6">
         <Image
-          src={stall.imageUrl || placeholderImg}
+          src={stall.image || placeholderImg}
           alt={stall.name}
           width={140}
           height={140}

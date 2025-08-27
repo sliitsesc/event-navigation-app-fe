@@ -3,7 +3,7 @@ export interface Stall {
   id: string;
   name: string;
   description?: string;
-  imageUrl?: string;
+  image?: string;
   organizer?: string;
   category?: string;
   floorNumber?: number;
