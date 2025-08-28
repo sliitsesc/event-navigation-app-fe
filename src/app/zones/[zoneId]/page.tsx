@@ -9,15 +9,19 @@ import { Stall } from "@/types/zones";
 import HeaderCard from "@/components/HeaderCard/HeaderCard";
 import HeaderCardSkeleton from "@/components/HeaderCard/HeaderCardSkeleton";
 import { Zone } from "@/types/zones";
+import ErrorCard from "@/components/ErrorCard/ErrorCard";
+import NoStallsCard from "@/components/StallCard/NoStallCard/NoStallCard";
 
 const SingleZonePage = () => {
   const { zoneId } = useParams();
   const [zone, setZone] = useState<Zone | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const fetchZone = async () => {
       setLoading(true);
+      setError("");
       try {
         const res = await api.get(`/exhibition/zones/${zoneId}`);
         const data = res.data as {
@@ -41,9 +45,13 @@ const SingleZonePage = () => {
           });
         } else {
           setZone(null);
+          setError(
+            "No zone found for this ID. The zone might be lost in space!"
+          );
         }
       } catch {
         setZone(null);
+        setError("Failed to load zone.");
       }
       setLoading(false);
     };
@@ -52,7 +60,9 @@ const SingleZonePage = () => {
 
   return (
     <>
-      {loading ? (
+      {error ? (
+        <ErrorCard message={error} />
+      ) : loading ? (
         <HeaderCardSkeleton />
       ) : (
         zone && (
@@ -65,7 +75,8 @@ const SingleZonePage = () => {
           />
         )
       )}
-      {loading ? (
+
+      {error ? null : loading ? (
         <div className="w-full rounded-3xl animate-pulse mb-4 relative">
           <div className="h-8 w-2/3 bg-gray-200 rounded-md mb-2" />
           <div className="h-6 w-1/2 bg-gray-200 rounded-md" />
@@ -80,7 +91,8 @@ const SingleZonePage = () => {
           </p>
         </>
       )}
-      {loading ? (
+
+      {error ? null : loading ? (
         <>
           {[...Array(5)].map((_, i) => (
             <StallCardSkeleton key={i} />
@@ -93,7 +105,7 @@ const SingleZonePage = () => {
           ))}
         </div>
       ) : (
-        <div className="text-gray-500">No stalls found in this zone.</div>
+        <NoStallsCard />
       )}
     </>
   );
