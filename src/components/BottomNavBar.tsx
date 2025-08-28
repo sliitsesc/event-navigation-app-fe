@@ -25,6 +25,7 @@ export default function BottomNavBar() {
         <Map size={28} />
       </button>
       <button
+        disabled
         className="flex flex-col text-blue-900 items-center justify-center w-[100px] h-[50px] rounded-full hover:bg-gray-100 active:bg-gray-200 transition-all"
         aria-label="Scan"
         onClick={() => router.push("/scan")}>
