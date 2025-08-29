@@ -31,7 +31,9 @@ const ZoneCard = ({ zone }: { zone: Zone }) => {
           {zone.description}
         </p>
       )}
-      <span className="text-lg text-gray-400">{zone.stalls.length} stalls</span>
+      <span className="text-lg text-gray-400">
+        {zone?.stalls?.length} stalls
+      </span>
     </motion.div>
   );
 };

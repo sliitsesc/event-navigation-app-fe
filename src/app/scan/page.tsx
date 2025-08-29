@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import QRScanner from "@/components/QRScanner/QRScanner";
 import QRErrorModal from "@/components/QRErrorModal/QRErrorModal";
@@ -9,10 +9,16 @@ import { isZone, isStall } from "@/types/zones";
 const ScanPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [scannerKey, setScannerKey] = useState(0);
   const [errorModal, setErrorModal] = useState({
     isOpen: false,
     message: "Invalid QR code",
   });
+
+  // Reset scanner when component mounts (when navigating back to scan page)
+  useEffect(() => {
+    setScannerKey((prev) => prev + 1);
+  }, []);
 
   const handleQRSubmit = async (qrCodeValue: string) => {
     console.log("QR Data:", qrCodeValue);
@@ -71,7 +77,9 @@ const ScanPage = () => {
         <h1 className="text-3xl font-bold mb-2 text-blue-900">
           Scan a QR Code
         </h1>
-        <p className="text-lg text-gray-600 mb-6">Scan a QR code to explore.</p>
+        <p className="text-lg text-gray-600 mb-6 text-center">
+          Scan a QR code to explore exhibition zones and stalls.
+        </p>
 
         {isLoading ? (
           <div className="flex flex-col items-center justify-center text-center w-full h-64">
@@ -79,7 +87,11 @@ const ScanPage = () => {
             <p className="text-blue-700 font-semibold">Processing QR code...</p>
           </div>
         ) : (
-          <QRScanner handleQRSubmit={handleQRSubmit} disabled={isLoading} />
+          <QRScanner
+            key={scannerKey}
+            handleQRSubmit={handleQRSubmit}
+            disabled={isLoading}
+          />
         )}
       </div>
 

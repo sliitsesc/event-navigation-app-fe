@@ -41,7 +41,7 @@ const SingleZonePage = () => {
         if (zoneData) {
           setZone({
             ...zoneData,
-            id: String(zoneData.id),
+            id: zoneData.id,
           });
         } else {
           setZone(null);
@@ -67,7 +67,7 @@ const SingleZonePage = () => {
       ) : (
         zone && (
           <HeaderCard
-            zoneId={zone.id}
+            zoneId={zone.id.toString()}
             title={zone.zoneName}
             description={zone.description}
             bgImage={zone.imageUrl}
@@ -101,7 +101,11 @@ const SingleZonePage = () => {
       ) : zone && zone.stalls && zone.stalls.length > 0 ? (
         <div className="grid grid-cols-1 gap-y-3">
           {zone.stalls.map((stall: Stall) => (
-            <StallCard key={stall.id} stall={stall} zoneId={zone.id} />
+            <StallCard
+              key={stall.id}
+              stall={stall}
+              zoneId={zone.id.toString()}
+            />
           ))}
         </div>
       ) : (
